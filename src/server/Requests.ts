@@ -1,6 +1,8 @@
 import axios from 'axios';
+const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+
 function baseConfig() {
-  const url = 'https://newsapi.org';
+  const url = `${proxyUrl}https://newsapi.org`;
   return {
     baseURL: `${url}/v2`,
     timeout: 30000,
