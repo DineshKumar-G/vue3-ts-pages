@@ -1,4 +1,4 @@
-# vue3-learn
+# vue3-ts-pages
 
 ## Project setup
 ```
