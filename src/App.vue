@@ -1,30 +1,36 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <q-layout view="lHh Lpr lFf">
+    <q-page-container>
+      <SideBar :leftDrawerOpen="leftDrawerOpen"> </SideBar>
+      <Header @toggle-side-bar="toggleSideBar"> </Header>
+      <router-view />
+    </q-page-container>
+  </q-layout>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+import SideBar from '@/components/SideBar.vue';
+import Header from '@/components/Header.vue';
 
-#nav {
-  padding: 30px;
+export default defineComponent({
+  name: 'App',
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  components: {
+    SideBar,
+    Header,
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+  setup() {
+    let leftDrawerOpen = ref(false);
+    const toggleSideBar = () => {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    };
+
+    return {
+      leftDrawerOpen,
+      toggleSideBar,
+    };
+  },
+});
+</script>

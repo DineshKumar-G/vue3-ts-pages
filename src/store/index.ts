@@ -1,8 +1,22 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
 
 export default createStore({
-  state: {},
-  mutations: {},
+  state: {
+    searchText: '',
+  },
+  mutations: {
+    resetSearchText(state) {
+      state.searchText = '';
+    },
+    setSeachText(state, val) {
+      state.searchText = val;
+    },
+  },
+  getters: {
+    getSearchText(state) {
+      return state.searchText;
+    },
+  },
   actions: {},
   modules: {},
 });
