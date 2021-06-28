@@ -25,7 +25,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const state = reactive({
-      text: 'Euro',
+      text: store.getters.getSearchText || 'Euro',
       clearSearch: () => {
         state.text = '';
         store.commit('resetSearchText');
