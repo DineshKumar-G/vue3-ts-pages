@@ -1,7 +1,7 @@
 <template>
   <div class="bg-grey-12">
     <div class="fit column content-center">
-      <search class="q-pt-xl self-center" style="width: 400px"></search>
+      <search class="q-pt-md self-center" style="width: 400px"></search>
       <h4 v-if="showNoRes" class="self-center">
         Uh. oh! News Not Found! &#x1F44E;
       </h4>
@@ -9,24 +9,24 @@
         Try your luck with different search query! &#x1F609;
       </h5>
     </div>
-    <div class="q-pt-md fit row wrap justify-center" v-if="!isLoading">
+    <div class="fit row wrap justify-center" v-if="!isLoading">
       <div v-for="news in articles" :key="news">
         <q-card
-          class="my-card q-mb-xl q-mr-xl col-5"
-          style="width: 800px; height: 670px"
+          class="my-card q-mb-xl q-mr-md q-ml-md col-5"
+          style="width: 770px; height: 670px"
         >
           <img
-            style="width: 800px; height: 500px"
+            style="width: 770px; height: 500px"
             src="http://www.mercuryminds.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
             v-if="!news.image"
           />
           <img
             v-else
             :src="news.image.thumbnail.contentUrl"
-            style="width: 800px; height: 500px"
+            style="width: 770px; height: 500px"
           />
           <q-card-section>
-            <div class="text-h6" style="width: 780px">
+            <div class="text-h6" style="width: 750px">
               {{ title(news.name) }}
               <q-icon
                 size="2rem"

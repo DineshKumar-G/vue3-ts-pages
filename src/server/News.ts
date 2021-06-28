@@ -14,6 +14,7 @@ export default {
         safeSearch: 'Off',
         textFormat: 'Raw',
         freshness: 'Day',
+        count: 20,
       };
       const { data } = await req.get('search', {
         params,
