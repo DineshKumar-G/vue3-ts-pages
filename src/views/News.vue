@@ -13,20 +13,20 @@
       <div v-for="news in articles" :key="news">
         <q-card
           class="my-card q-mb-xl q-mr-md q-ml-md col-5"
-          style="width: 770px; height: 670px"
+          style="width: 770px; height: 530px"
         >
           <img
-            style="width: 770px; height: 500px"
+            style="width: 770px; height: 400px"
             src="http://www.mercuryminds.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
             v-if="!news.image"
           />
           <img
             v-else
             :src="news.image.thumbnail.contentUrl"
-            style="width: 770px; height: 500px"
+            style="width: 770px; height: 400px"
           />
           <q-card-section>
-            <div class="text-h6" style="width: 750px">
+            <div class="text-h6 non-selectable" style="width: 750px">
               {{ title(news.name) }}
               <q-icon
                 size="2rem"
@@ -43,11 +43,19 @@
             </div>
           </q-card-section>
 
-          <q-card-section
-            class="q-pt-none"
-            style="width: 790px"
-            v-html="news.description.substring(0, 300) + '...'"
-          >
+          <q-card-section class="q-pt-none" style="width: 770px">
+            {{ news.description.substring(0, 200) + '...' }}
+            <q-tooltip
+              class="bg-amber text-black shadow-4 text-subtitle1"
+              :offset="[10, 10]"
+              max-width="45rem"
+            >
+              <span class="text-weight-bold">
+                {{ news.name }}
+              </span>
+              <br />
+              {{ news.description }}
+            </q-tooltip>
           </q-card-section>
         </q-card>
       </div>
@@ -75,7 +83,7 @@ export default defineComponent({
     let total = ref(0);
     let articles = ref();
     function title(str: string): string {
-      if (str.length >= 70) return str.substring(0, 70) + '...';
+      if (str.length >= 65) return str.substring(0, 65) + '...';
       return str;
     }
     let search = computed(() => {
