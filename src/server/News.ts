@@ -6,21 +6,16 @@ const defaultResult = {
 };
 import GenerateRequest from './Requests';
 const req = GenerateRequest();
-// 'https://newsapi.org/v2/everything?' +
-//           'q=Apple&' +
-//           'from=2021-06-27&' +
-//           'sortBy=popularity&' +
-//           'apiKey=a492a14165184b7ebb3e1161a782c140';
 export default {
   async getNews(params): Promise<NewsResult> {
     try {
       params = {
-        ...params,
-        apiKey: 'a492a14165184b7ebb3e1161a782c140',
-        from: '2021-06-27',
-        sortBy: 'popularity',
+        q: 'apple',
+        safeSearch: 'Off',
+        textFormat: 'Raw',
+        freshness: 'Day',
       };
-      const { data }: { data: NewsApiResponse } = await req.get('everything', {
+      const { data }: { data: NewsApiResponse } = await req.get('search', {
         params,
       });
       if (data.status == 'ok') {
