@@ -2,8 +2,25 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import News from '@/views/News.vue';
 import Todos from '@/views/Todos.vue';
 import Weather from '@/views/Weather.vue';
+import Login from '@/views/Login.vue';
+import Signup from '@/views/Signup.vue';
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup,
+  },
   {
     path: '/news',
     name: 'News',
@@ -30,8 +47,8 @@ const routes: Array<RouteRecordRaw> = [
   //   component: About,
   // },
   {
-    path: "/:catchAll(.*)",
-    component: News,
+    path: '/:catchAll(.*)',
+    component: Login,
   },
 ];
 

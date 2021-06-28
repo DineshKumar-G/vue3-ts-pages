@@ -7,14 +7,14 @@ const routeOpts: RouteObjects[] = [
     icon: 'article',
   },
   {
-    name: 'Todos',
-    path: '/todos',
-    icon: 'fact_check',
-  },
-  {
     name: 'Weather',
     path: '/weather',
     icon: 'nightlight',
+  },
+  {
+    name: 'Todos',
+    path: '/todos',
+    icon: 'fact_check',
   },
 ];
 

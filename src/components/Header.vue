@@ -53,7 +53,11 @@ export default defineComponent({
     };
 
     watch(route, (val) => {
-      tab.value = _.find(routeOpts, { path: route.path }).name;
+      tab.value = _.get(
+        _.find(routeOpts, { path: route.path }),
+        'name',
+        routeOpts[0].name
+      );
     });
 
     return {
