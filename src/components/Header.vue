@@ -11,6 +11,9 @@
       />
 
       <q-toolbar-title> Random Apps </q-toolbar-title>
+      <q-toolbar-title style="text-align: end" class="text-grey-6">
+        Built with Vue3 + TS + Quasar
+      </q-toolbar-title>
     </q-toolbar>
     <q-tabs
       v-model="tab"

@@ -1,5 +1,6 @@
 <template>
   <q-drawer
+  v-if="leftDrawerOpen"
     show-if-above
     :mini="miniState"
     @mouseover="miniState = false"

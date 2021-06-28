@@ -22,7 +22,7 @@ export default defineComponent({
   },
 
   setup() {
-    let leftDrawerOpen = ref(false);
+    let leftDrawerOpen = ref(true);
     const toggleSideBar = () => {
       leftDrawerOpen.value = !leftDrawerOpen.value;
     };
