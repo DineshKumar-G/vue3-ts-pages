@@ -5,6 +5,7 @@
         flat
         dense
         round
+        v-if="showTools"
         @click="$emit('toggleSideBar')"
         aria-label="Menu"
         icon="menu"
@@ -16,6 +17,7 @@
       </q-toolbar-title>
     </q-toolbar>
     <q-tabs
+      v-if="showTools"
       v-model="tab"
       :key="tab"
       class="bg-grey-10"
@@ -43,6 +45,12 @@ import { routeOpts } from '@/contants/pages';
 export default defineComponent({
   name: 'Header',
   components: {},
+  props: {
+    showTools: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup(props, context) {
     const router = useRouter();
     const route = useRoute();

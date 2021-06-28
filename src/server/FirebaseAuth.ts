@@ -13,9 +13,10 @@ const firebaseConfig = {
   measurementId: 'G-8V270EP3D7',
 };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 export default {
+  firebaseConfig,
   async signup() {
     firebase
       .auth()

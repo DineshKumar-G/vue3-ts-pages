@@ -25,6 +25,14 @@
           </q-item-section>
         </q-item>
       </div>
+      <q-item clickable tag="a" class="text-grey-3" @click="signOut()">
+        <q-item-section avatar>
+          <q-icon class="text-red-12" name="logout"/>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label> Sign Out </q-item-label>
+        </q-item-section>
+      </q-item>
       <q-item
         clickable
         tag="a"
@@ -46,6 +54,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { routeOpts } from '@/contants/pages';
+import { useRouter, useRoute } from 'vue-router';
+
+import { useStore } from 'vuex';
+
+import firebase from 'firebase/app';
 
 export default defineComponent({
   name: 'SideBar',
@@ -57,14 +70,30 @@ export default defineComponent({
     },
   },
   setup() {
+    const store = useStore();
+    const router = useRouter();
+
     const goToExternal = () => {
       window.open('https://github.com/DineshKumar-G/vue3-ts-pages');
+    };
+    const signOut = () => {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          store.commit('setAuthentic', false);
+          router.push('/login');
+        })
+        .catch((error) => {
+          // An error happened.
+        });
     };
     return {
       drawer: ref(false),
       miniState: ref(true),
       routeOpts,
       goToExternal,
+      signOut,
     };
   },
 });

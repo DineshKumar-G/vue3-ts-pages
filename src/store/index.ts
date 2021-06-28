@@ -8,6 +8,7 @@ const vuexLocal = new VuexPersist({
 export default createStore({
   state: {
     searchText: '',
+    isLoggedIn: false,
   },
   mutations: {
     resetSearchText(state) {
@@ -16,10 +17,16 @@ export default createStore({
     setSeachText(state, val) {
       state.searchText = val;
     },
+    setAuthentic(state, val) {
+      state.isLoggedIn = val;
+    },
   },
   getters: {
     getSearchText(state) {
       return state.searchText;
+    },
+    ensureAuthentic(state) {
+      return state.isLoggedIn;
     },
   },
   actions: {},
