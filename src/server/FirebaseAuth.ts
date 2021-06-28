@@ -4,7 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: process.env.firebase_key,
+  apiKey: process.env.VUE_APP_FIREBASE_KEY,
   authDomain: 'vue3-ts-pages.firebaseapp.com',
   projectId: 'vue3-ts-pages',
   storageBucket: 'vue3-ts-pages.appspot.com',
