@@ -13,9 +13,10 @@
       <div v-for="news in articles" :key="news">
         <q-card
           class="my-card q-mb-xl q-mr-xl col-5"
-          style="width: 800px; height: 700px"
+          style="width: 800px; height: 670px"
         >
           <img
+            style="width: 800px; height: 500px"
             src="http://www.mercuryminds.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
             v-if="!news.image"
           />
@@ -27,13 +28,24 @@
           <q-card-section>
             <div class="text-h6" style="width: 780px">
               {{ title(news.name) }}
+              <q-icon
+                size="2rem"
+                class="q-pr-md cursor-pointer"
+                @click="navigateToExternal(news.url)"
+                color="primary"
+                name="zoom_out_map"
+                style="float: right"
+              />
             </div>
-            <div class="text-subtitle2">by {{ news.provider[0].name }}</div>
+            <div class="text-subtitle2">
+              Published : {{ news.datePublished.substring(0, 10) }} by
+              {{ news.provider[0].name }}
+            </div>
           </q-card-section>
 
           <q-card-section
             class="q-pt-none"
-            style="width: 750px"
+            style="width: 790px"
             v-html="news.description.substring(0, 300) + '...'"
           >
           </q-card-section>
@@ -63,7 +75,7 @@ export default defineComponent({
     let total = ref(0);
     let articles = ref();
     function title(str: string): string {
-      if (str.length >= 80) return str.substring(0, 80) + '...';
+      if (str.length >= 70) return str.substring(0, 70) + '...';
       return str;
     }
     let search = computed(() => {
@@ -86,12 +98,16 @@ export default defineComponent({
       $q.loading.hide();
     };
     watch(search, () => loadData());
+    const navigateToExternal = (url) => {
+      window.open(url);
+    };
     return {
       isLoading,
       articles,
       title,
       search,
       showNoRes,
+      navigateToExternal,
     };
   },
 });
