@@ -2,7 +2,12 @@
   <div class="bg-grey-12">
     <div class="fit column content-center">
       <search class="q-pt-xl self-center" style="width: 400px"></search>
-      <h4 v-if="showNoRes" class="self-center">Uh. oh! News Not Found!!</h4>
+      <h4 v-if="showNoRes" class="self-center">
+        Uh. oh! News Not Found! &#x1F44E;
+      </h4>
+      <h5 v-if="showNoRes" class="self-center">
+        Try your luck with different search query! &#x1F609;
+      </h5>
     </div>
     <div class="q-pt-md fit row wrap justify-center" v-if="!isLoading">
       <div v-for="news in articles" :key="news">
@@ -10,12 +15,20 @@
           class="my-card q-mb-xl q-mr-xl col-5"
           style="width: 800px; height: 700px"
         >
-          <img :src="news.urlToImage" style="width: 800px; height: 500px" />
+          <img
+            src="http://www.mercuryminds.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
+            v-if="!news.image"
+          />
+          <img
+            v-else
+            :src="news.image.thumbnail.contentUrl"
+            style="width: 800px; height: 500px"
+          />
           <q-card-section>
             <div class="text-h6" style="width: 780px">
-              {{ title(news.title) }}
+              {{ title(news.name) }}
             </div>
-            <div class="text-subtitle2">by {{ news.author }}</div>
+            <div class="text-subtitle2">by {{ news.provider[0].name }}</div>
           </q-card-section>
 
           <q-card-section

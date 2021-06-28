@@ -10,18 +10,19 @@ export default {
   async getNews(params): Promise<NewsResult> {
     try {
       params = {
-        q: 'apple',
+        ...params,
         safeSearch: 'Off',
         textFormat: 'Raw',
         freshness: 'Day',
       };
-      const { data }: { data: NewsApiResponse } = await req.get('search', {
+      const { data } = await req.get('search', {
         params,
       });
-      if (data.status == 'ok') {
+      data as NewsApiResponse;
+      if (data) {
         return {
-          articles: data.articles,
-          total: data.totalResults,
+          articles: data.value,
+          total: data.totalEstimatedMatches,
         };
       }
       return defaultResult;

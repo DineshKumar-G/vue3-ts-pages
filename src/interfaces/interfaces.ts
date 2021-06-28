@@ -5,26 +5,58 @@ export interface RouteObjects {
 }
 
 export interface News {
-  author: string;
-  content: string;
-  description: string;
-  publishedAt: string;
-  source: {
-    id: string;
+  about: {
     name: string;
+    readLink: string;
+    _type: string;
+  }[];
+  datePublished: string;
+  description: string;
+  image: {
+    thumbnail: {
+      contentUrl: string;
+      height: number;
+      width: number;
+      _type: string;
+    };
+    _type: string;
   };
-  title: string;
+  name: string;
   url: string;
-  urlToImage: string;
+  _type: string;
+  provider: {
+    name: string;
+    _type: string;
+    image: {
+      _type: string;
+      thumbnail: {
+        contentUrl: string;
+        _type: string;
+      };
+    };
+  }[];
 }
 
+export interface returnSortObj {
+  id: string;
+  isSelected: boolean;
+  name: string;
+  url: string;
+  _type: string;
+}
 export interface NewsApiResponse {
-  articles: News[];
-  status: 'ok' | 'error';
-  totalResults: number;
+  totalEstimatedMatches: number;
+  sort: returnSortObj[];
+  value: News[];
+  _type: string;
+  queryContext: {
+    adultIntent: boolean;
+    originalQuery: string;
+    _type: string;
+  };
 }
 
 export interface NewsResult {
-  articles: News[],
+  articles: News[];
   total: number;
 }
