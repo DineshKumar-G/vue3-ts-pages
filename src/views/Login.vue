@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, onMounted } from 'vue';
 import firebase from 'firebase/app';
 import _ from 'lodash';

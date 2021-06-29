@@ -10,53 +10,64 @@
       </h5>
     </div>
     <div class="fit row wrap justify-center" v-if="!isLoading">
-      <div v-for="news in articles" :key="news">
-        <q-card
-          class="my-card q-mb-xl q-mr-md q-ml-md col-5"
-          style="width: 770px; height: 530px"
-        >
-          <img
-            style="width: 770px; height: 400px"
-            src="http://www.mercuryminds.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
-            v-if="!news.image"
-          />
-          <img
-            v-else
-            :src="news.image.thumbnail.contentUrl"
-            style="width: 770px; height: 400px"
-          />
-          <q-card-section>
-            <div class="text-h6 non-selectable" style="width: 750px">
-              {{ title(news.name) }}
-              <q-icon
-                size="2rem"
-                class="q-pr-md cursor-pointer"
-                @click="navigateToExternal(news.url)"
-                color="primary"
-                name="zoom_out_map"
-                style="float: right"
-              />
-            </div>
-            <div class="text-subtitle2">
-              Published : {{ news.datePublished.substring(0, 10) }} by
-              {{ news.provider[0].name }}
-            </div>
-          </q-card-section>
+      <div
+        class="q-pa-md row items-start q-gutter-md"
+        v-for="news in articles"
+        :key="news"
+      >
+        <q-card class="my-card" style="max-width: 600px; max-height: 175px">
+          <q-list>
+            <q-item>
+              <q-item-section top thumbnail class="q-pl-sm">
+                <img
+                  style="width: 150px; height: 150px"
+                  src="http://www.mercuryminds.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
+                  v-if="!news.image"
+                />
+                <img
+                  v-else
+                  style="width: 150px; height: 150px"
+                  :src="news.image.thumbnail.contentUrl"
+                />
+              </q-item-section>
 
-          <q-card-section class="q-pt-none" style="width: 770px">
-            {{ news.description.substring(0, 200) + '...' }}
-            <q-tooltip
-              class="bg-amber text-black shadow-4 text-subtitle1"
-              :offset="[10, 10]"
-              max-width="45rem"
-            >
-              <span class="text-weight-bold">
-                {{ news.name }}
-              </span>
-              <br />
-              {{ news.description }}
-            </q-tooltip>
-          </q-card-section>
+              <q-item-section>
+                <q-item-label class="text-h6 non-selectable">
+                  {{ news.name }}
+                </q-item-label>
+                <q-item-label caption class="text-subtitle2">
+                  Published : {{ news.datePublished.substring(0, 10) }} by
+                  {{ news.provider[0].name }}
+                </q-item-label>
+                <q-item-label class="text-elipsis">
+                  {{ news.description }}
+                  <q-tooltip
+                    class="bg-amber text-black shadow-4 text-subtitle1"
+                    :offset="[10, 10]"
+                    max-width="45rem"
+                  >
+                    <span class="text-weight-bold">
+                      {{ news.name }}
+                    </span>
+                    <br />
+                    {{ news.description }}
+                  </q-tooltip>
+                </q-item-label>
+              </q-item-section>
+              <q-item-section side top class="q-pl-xl">
+                <q-item-label caption>
+                  <q-icon
+                    size="2rem"
+                    style="left:1.5rem"
+                    class="q-pr-md cursor-pointer"
+                    @click="navigateToExternal(news.url)"
+                    color="primary"
+                    name="zoom_out_map"
+                  />
+                </q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
         </q-card>
       </div>
     </div>
@@ -121,4 +132,10 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.text-elipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>

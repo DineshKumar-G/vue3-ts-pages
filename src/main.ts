@@ -14,6 +14,7 @@ import { Quasar, Loading } from 'quasar';
 import quasarUserOptions from '@/quasar-user-options.js';
 
 firebase.initializeApp(fireConfig.firebaseConfig);
+console.log('env', JSON.stringify(process.env));
 
 createApp(App)
   .use(Quasar, {
